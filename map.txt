@@ -1,0 +1,234 @@
+MONSTER 0
+NAME Coil Snake
+DESCRIPTION A very weak snake, coils up when scared
+GOLD 50
+ATTACK 30
+DEFENSE 20
+REGEN 10
+
+MONSTER 1
+NAME Spiteful Crow
+DESCRIPTION He likes to steal things from your packs and pockets
+GOLD 100
+ATTACK 20
+DEFENSE 40
+REGEN 10
+
+MONSTER 2
+NAME Rowdy Mouse
+DESCRIPTION Small grey mouse, likes to bite
+GOLD 50
+ATTACK 10
+DEFENSE 10
+REGEN 10
+
+MONSTER 3
+NAME Zombie Dog
+DESCRIPTION Dark blue undead dog, watch for their poison bites
+GOLD 100
+ATTACK 40
+DEFENSE 20
+REGEN 10
+
+MONSTER 4
+NAME Starman
+DESCRIPTION Extraterrestrial being, will teleport and shoot lasers
+GOLD 50
+ATTACK 50
+DEFENSE 40
+REGEN 10
+
+MONSTER 5
+NAME Evil Mushroom
+DESCRIPTION Looks like a regular mushroom but attacks when you get nearby
+GOLD 50
+ATTACK 50
+DEFENSE 10
+REGEN 10
+
+MONSTER 6
+NAME Mighty Bear
+DESCRIPTION A friendly looking bear with huge attacks
+GOLD 70
+ATTACK 80
+DEFENSE 10
+REGEN 10
+
+MONSTER 7
+NAME Armored Frog
+DESCRIPTION A little green frog that is highly resistant to attacks
+GOLD 10
+ATTACK 20
+DEFENSE 40
+REGEN 0
+
+MONSTER 8
+NAME Mad Duck
+DESCRIPTION Small white duck that seems very angry
+GOLD 20
+ATTACK 30
+DEFENSE 30
+REGEN 10
+
+MONSTER 9
+NAME Violent Roach
+DESCRIPTION A feisty cockroach that will fly around
+GOLD 30
+ATTACK 40
+DEFENSE 30
+REGEN 0
+
+ROOM 1
+NAME Grand Enterance
+DESCRIPTION Not so big enterance that leads right to the living room
+CONNECT 2
+GOLD 10
+
+ROOM 2
+NAME Living Room
+DESCRIPTION Big and spacious, football is playing on the TV
+CONNECT 1
+CONNECT 3
+CONNECT 4
+MONSTER 0
+MONSTER 2
+GOLD 100
+
+ROOM 3
+NAME Storage Room
+DESCRIPTION Cluttered with boxes and old furniture, a faint musty smell lingers in the air
+CONNECT 2
+MONSTER 2
+GOLD 50
+
+ROOM 4
+NAME Kitchen
+DESCRIPTION Well-equipped with stainless steel appliances, a pot of stew simmers on the stove
+CONNECT 2
+CONNECT 5
+MONSTER 5
+GOLD 10
+
+ROOM 5
+NAME Study
+DESCRIPTION Lined with bookshelves filled with dusty tomes, a desk cluttered with papers sits in the corner
+CONNECT 4
+CONNECT 6
+CONNECT 7
+GOLD 30
+
+ROOM 6
+NAME Bathroom
+DESCRIPTION Tiles gleam under fluorescent lights, a faint scent of lavender wafts from a bar of soap
+CONNECT 5
+CONNECT 9
+MONSTER 8
+GOLD 40
+
+ROOM 7
+NAME Attic
+DESCRIPTION Dusty and dimly lit, old furniture and forgotten trinkets gather dust in the corners
+CONNECT 5
+CONNECT 8
+MONSTER 1
+MONSTER 9
+GOLD 10
+
+ROOM 8
+NAME Garden
+DESCRIPTION Lush greenery surrounds a small pond, birds chirp in the trees above
+CONNECT 7
+MONSTER 7
+GOLD 80
+
+ROOM 9
+NAME Workshop
+DESCRIPTION Tools hang neatly on the walls, sawdust covers the workbench, and the scent of freshly cut wood fills the air
+CONNECT 6
+CONNECT 10
+GOLD 20
+
+ROOM 10
+NAME Basement
+DESCRIPTION Cold and damp, shelves of canned goods line the walls, and water drips from a leaky pipe
+CONNECT 9
+CONNECT 11
+CONNECT 12
+CONNECT 13
+MONSTER 9
+GOLD 60
+
+ROOM 11
+NAME Game Room
+DESCRIPTION Arcade machines beep and whirr, a pool table sits in the center, and shelves are lined with board games
+CONNECT 10
+CONNECT 14
+GOLD 100
+
+ROOM 12
+NAME Library
+DESCRIPTION Floor-to-ceiling shelves hold a vast collection of books, with cozy reading nooks scattered throughout
+CONNECT 10
+CONNECT 15
+MONSTER 0
+MONSTER 2
+GOLD 40
+
+ROOM 13
+NAME Gym
+DESCRIPTION Exercise equipment fills the room, motivational posters adorn the walls, and the scent of sweat lingers in the air
+CONNECT 10
+CONNECT 16
+GOLD 70
+
+ROOM 14
+NAME Cinema
+DESCRIPTION Plush seats face a screen, popcorn bags litter the floor, and the faint sound of a movie plays in the background.
+CONNECT 11
+CONNECT 15
+CONNECT 18
+MONSTER 3
+GOLD 10
+
+ROOM 15
+NAME Art Studio
+DESCRIPTION Easels stand with works-in-progress, paint splatters adorn the floor, and the scent of turpentine fills the air
+CONNECT 12
+CONNECT 14
+CONNECT 17
+GOLD 30
+
+ROOM 16
+NAME Observatory
+DESCRIPTION Telescopes point toward the night sky, constellations painted on the ceiling, and a sense of wonder fills the room.
+CONNECT 13
+GOLD 90
+
+ROOM 17
+NAME Music Room
+DESCRIPTION Instruments line the walls, sheet music covers the floor, and the sound of a piano fills the air.
+CONNECT 15
+GOLD 80
+
+ROOM 18
+NAME Labratory
+DESCRIPTION Test tubes bubble on Bunsen burners, a chalkboard is covered in equations, and the scent of chemicals fills the air.
+CONNECT 14
+CONNECT 19
+MONSTER 6
+GOLD 20
+
+ROOM 19
+NAME Secret Chamber
+DESCRIPTION Hidden behind a false wall, this chamber is dimly lit by torches, revealing artifacts and mysterious symbols etched into the walls.
+CONNECT 18
+CONNECT 20
+GOLD 90
+
+ROOM 20
+NAME Crypt
+DESCRIPTION Cold walls are lined with ancient sarcophagi, eerie whispers echo through the chamber, and a sense of foreboding hangs heavy in the air.
+CONNECT 19
+MONSTER 4
+GOLD 100
+
