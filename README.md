@@ -2,7 +2,7 @@
 
 This repository houses both the server and client components of a multiplayer game system. The server is built using C/C++ and handles multiple concurrent connections using sockets and POSIX threads. The client, developed in Python with tkinter, provides a graphical interface for real-time interaction with the game server.
 
-Here is the ["Lurk" Protocol](https://isoptera.lcsc.edu/~seth/cs435/lurk_2.3.html) which the project follows. 
+Here is the [Protocol](https://isoptera.lcsc.edu/~seth/cs435/lurk_2.3.html) which the project follows. 
 
 Server Features: 
 
@@ -21,10 +21,10 @@ Client Features:
 Screenshots: 
 
 <div display="flex">
-<img src="pictures/picture1.png" alt="Image 1" width="25%" />
-<img src="pictures/picture2.png" alt="Image 2" width="25%" />
-<img src="pictures/picture3.png" alt="Image 3" width="25%" />
-<img src="pictures/picture4.png" alt="Image 4" width="25%" />
+<img src="pictures/picture1.png" alt="Image 1" width="50%" />
+<img src="pictures/picture2.png" alt="Image 2" width="50%" />
+<img src="pictures/picture3.png" alt="Image 3" width="50%" />
+<img src="pictures/picture4.png" alt="Image 4" width="50%" />
 </div>
 
 Prerequisites:
