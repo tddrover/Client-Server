@@ -15,7 +15,8 @@ Client Features:
 
 - Graphical User Interface using tkinter for easy interaction.
 - Real-time messaging between players.
-- Interface for changing rooms, managing character attributes, and viewing game status.
+- Buttons and prompts for changing rooms, messaging players, and even fighting monsters
+- Frames with real-time updates of players, monsters, and room connections
 
 
 Screenshots: 
