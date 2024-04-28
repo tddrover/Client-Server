@@ -21,10 +21,10 @@ Client Features:
 Screenshots: 
 
 <div display="flex">
-<img src="pictures/picture1.png" alt="Image 1" width="70%" />
-<img src="pictures/picture2.png" alt="Image 2" width="70%" />
-<img src="pictures/picture3.png" alt="Image 3" width="70%" />
-<img src="pictures/picture4.png" alt="Image 4" width="70%" />
+<img src="pictures/picture5.png" alt="Image 1" width="70%" />
+<img src="pictures/picture6.png" alt="Image 2" width="70%" />
+<img src="pictures/picture7.png" alt="Image 3" width="70%" />
+<img src="pictures/picture8.png" alt="Image 4" width="70%" />
 </div>
 
 Prerequisites:
