@@ -149,10 +149,10 @@ class PVPInputWindow:
         self.pvp_entry = tk.Entry(self.window)
         self.pvp_entry.grid(row=0, column=1, sticky="ew")
 
-        self.submit_button = tk.Button(self.window, text="Submit", command=self.submit_loot)
+        self.submit_button = tk.Button(self.window, text="Submit", command=self.submit_pvp)
         self.submit_button.grid(row=1, columnspan=2, sticky="ew")
 
-    def submit_loot(self):
+    def submit_pvp(self):
         target_name = self.pvp_entry.get()
         if len(target_name) > 32:
             print("Error: Target name too long. Please enter a name up to 32 characters.")
