@@ -137,6 +137,40 @@ class LootInputWindow:
         # Close the window
         self.window.destroy()
 
+class PVPInputWindow:
+    def __init__(self, parent, server_socket):
+        self.parent = parent
+        self.server_socket = server_socket
+        self.window = tk.Toplevel(parent)
+        self.window.title("PVP Target")
+
+        self.pvp_label = tk.Label(self.window, text="Player Name:")
+        self.pvp_label.grid(row=0, column=0, sticky="w")
+        self.pvp_entry = tk.Entry(self.window)
+        self.pvp_entry.grid(row=0, column=1, sticky="ew")
+
+        self.submit_button = tk.Button(self.window, text="Submit", command=self.submit_loot)
+        self.submit_button.grid(row=1, columnspan=2, sticky="ew")
+
+    def submit_loot(self):
+        target_name = self.pvp_entry.get()
+        if len(target_name) > 32:
+            print("Error: Target name too long. Please enter a name up to 32 characters.")
+            return
+
+        pvp_data = bytearray(33)
+        pvp_data[0] = 4  # Type for PVP
+        pvp_data[1:1+len(target_name)] = target_name.encode('utf-8')  # Target Name
+
+        # Send loot information to the server
+        try:
+            self.server_socket.send(pvp_data)  # Send loot data
+        except Exception as e:
+            print(f"Error sending PVP data to server: {e}")
+
+        # Close the window
+        self.window.destroy()
+
         
 class CharacterInputWindow:
     def __init__(self, parent, server_socket, callback=None):
@@ -320,41 +354,53 @@ class LurkReaderApp:
         self.connect_to_server()
 
     def setup_main_frame_widgets(self):
-        # Labels, entries, and buttons
+        # Configure grid weights in main_frame for dynamic resizing
+        num_columns = 14  # Total number of grid columns for even distribution
+        for i in range(num_columns):
+            self.main_frame.columnconfigure(i, weight=1)
+
+        # Labels, entries, and buttons for row 0
         self.hostname_label = tk.Label(self.main_frame, text="Hostname:")
-        self.hostname_label.grid(row=0, column=0, sticky="w")
+        self.hostname_label.grid(row=0, column=0, columnspan=2, sticky="ew")
         self.hostname_entry = tk.Entry(self.main_frame)
-        self.hostname_entry.grid(row=0, column=1, sticky="ew")
+        self.hostname_entry.grid(row=0, column=2, columnspan=4, sticky="ew")
+
         self.port_label = tk.Label(self.main_frame, text="Port:")
-        self.port_label.grid(row=0, column=2, sticky="w")
+        self.port_label.grid(row=0, column=6, columnspan=2, sticky="ew")
         self.port_entry = tk.Entry(self.main_frame)
-        self.port_entry.grid(row=0, column=3, sticky="ew")
+        self.port_entry.grid(row=0, column=8, columnspan=4, sticky="ew")
+
         self.connect_button = tk.Button(self.main_frame, text="Connect", command=self.connect_to_server)
-        self.connect_button.grid(row=0, column=4, sticky="ew")
-        self.quit_button = tk.Button(self.main_frame, text="Quit", command=self.leave, state=tk.DISABLED)
-        self.quit_button.grid(row=0, column=5, sticky="ew")
-        self.character_button = tk.Button(self.main_frame, text="Character", command=self.open_character_input_window, state=tk.DISABLED)
-        self.character_button.grid(row=1, column=0, sticky="ew")
-        self.start_button = tk.Button(self.main_frame, text="Start", command=self.start, state=tk.DISABLED)
-        self.start_button.grid(row=1, column=1, sticky="ew")
-        self.message_button = tk.Button(self.main_frame, text="Message", command=self.open_message_input_window, state=tk.DISABLED)
-        self.message_button.grid(row=1, column=2, sticky="ew")
-        self.changeroom_button = tk.Button(self.main_frame, text="Change Room", command=self.open_changeroom_input_window, state=tk.DISABLED)
-        self.changeroom_button.grid(row=1, column=3, sticky="ew")
-        self.fight_button = tk.Button(self.main_frame, text="Fight", command=self.fight, state=tk.DISABLED)
-        self.fight_button.grid(row=1, column=4, sticky="ew")
-        self.loot_button = tk.Button(self.main_frame, text="Loot", command=self.open_loot_input_window, state=tk.DISABLED)
-        self.loot_button.grid(row=1, column=5, sticky="ew")
+        self.connect_button.grid(row=0, column=12, sticky="ew")
+        self.quit_button = tk.Button(self.main_frame, text="Quit", command=self.leave)
+        self.quit_button.grid(row=0, column=13, sticky="ew")
+
+        # Buttons for row 1
+        self.character_button = tk.Button(self.main_frame, text="Character", command=self.open_character_input_window)
+        self.character_button.grid(row=1, column=0, columnspan=2, sticky="ew")
+        self.start_button = tk.Button(self.main_frame, text="Start", command=self.start)
+        self.start_button.grid(row=1, column=2, columnspan=2, sticky="ew")
+        self.message_button = tk.Button(self.main_frame, text="Message", command=self.open_message_input_window)
+        self.message_button.grid(row=1, column=4, columnspan=2, sticky="ew")
+        self.loot_button = tk.Button(self.main_frame, text="Loot", command=self.open_loot_input_window)
+        self.loot_button.grid(row=1, column=6, columnspan=2, sticky="ew")
+        self.fight_button = tk.Button(self.main_frame, text="Fight", command=self.fight)
+        self.fight_button.grid(row=1, column=8, columnspan=2, sticky="ew")
+        self.pvp_fight_button = tk.Button(self.main_frame, text="PVP Fight", command=self.open_pvp_input_window)
+        self.pvp_fight_button.grid(row=1, column=10, columnspan=2, sticky="ew")
+        self.changeroom_button = tk.Button(self.main_frame, text="Change Room", command=self.open_changeroom_input_window)
+        self.changeroom_button.grid(row=1, column=12, columnspan=2, sticky="ew")
+
+        # Ensure the output text widget expands vertically in the third row
         self.output_text = tk.Text(self.main_frame, wrap="word")
-        self.output_text.grid(row=2, column=0, columnspan=6, sticky="nsew")
+        self.output_text.grid(row=2, column=0, columnspan=14, sticky="nsew")
         self.output_text.config(state="disabled")
 
-        # Configure grid weights in main_frame for dynamic resizing
-        for i in range(6):
-            self.main_frame.columnconfigure(i, weight=1)
-        self.main_frame.rowconfigure(2, weight=1)  # Ensure text widget expands vertically
+        self.main_frame.rowconfigure(0, weight=0)
+        self.main_frame.rowconfigure(1, weight=0)
+        self.main_frame.rowconfigure(2, weight=1)  # Text widget in row 2 should expand vertically
 
-        # Text styles
+
         self.output_text.tag_config("red", foreground="red")
         self.monster_text.tag_config("red", foreground="red")
         self.output_text.tag_config("green", foreground="green")
@@ -784,6 +830,9 @@ class LurkReaderApp:
 
     def open_loot_input_window(self):
         loot_input_window = LootInputWindow(self.root, self.skt)
+
+    def open_pvp_input_window(self):
+        pvp_input_window = PVPInputWindow(self.root, self.skt)
 
         
 
