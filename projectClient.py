@@ -372,23 +372,23 @@ class LurkReaderApp:
 
         self.connect_button = tk.Button(self.main_frame, text="Connect", command=self.connect_to_server)
         self.connect_button.grid(row=0, column=12, sticky="ew")
-        self.quit_button = tk.Button(self.main_frame, text="Quit", command=self.leave)
+        self.quit_button = tk.Button(self.main_frame, text="Quit", command=self.leave,state=tk.DISABLED)
         self.quit_button.grid(row=0, column=13, sticky="ew")
 
         # Buttons for row 1
-        self.character_button = tk.Button(self.main_frame, text="Character", command=self.open_character_input_window)
+        self.character_button = tk.Button(self.main_frame, text="Character", command=self.open_character_input_window,state=tk.DISABLED)
         self.character_button.grid(row=1, column=0, columnspan=2, sticky="ew")
-        self.start_button = tk.Button(self.main_frame, text="Start", command=self.start)
+        self.start_button = tk.Button(self.main_frame, text="Start", command=self.start,state=tk.DISABLED)
         self.start_button.grid(row=1, column=2, columnspan=2, sticky="ew")
-        self.message_button = tk.Button(self.main_frame, text="Message", command=self.open_message_input_window)
+        self.message_button = tk.Button(self.main_frame, text="Message", command=self.open_message_input_window,state=tk.DISABLED)
         self.message_button.grid(row=1, column=4, columnspan=2, sticky="ew")
-        self.loot_button = tk.Button(self.main_frame, text="Loot", command=self.open_loot_input_window)
+        self.loot_button = tk.Button(self.main_frame, text="Loot", command=self.open_loot_input_window,state=tk.DISABLED)
         self.loot_button.grid(row=1, column=6, columnspan=2, sticky="ew")
-        self.fight_button = tk.Button(self.main_frame, text="Fight", command=self.fight)
+        self.fight_button = tk.Button(self.main_frame, text="Fight", command=self.fight,state=tk.DISABLED)
         self.fight_button.grid(row=1, column=8, columnspan=2, sticky="ew")
-        self.pvp_fight_button = tk.Button(self.main_frame, text="PVP Fight", command=self.open_pvp_input_window)
-        self.pvp_fight_button.grid(row=1, column=10, columnspan=2, sticky="ew")
-        self.changeroom_button = tk.Button(self.main_frame, text="Change Room", command=self.open_changeroom_input_window)
+        self.pvp_button = tk.Button(self.main_frame, text="PVP Fight", command=self.open_pvp_input_window,state=tk.DISABLED)
+        self.pvp_button.grid(row=1, column=10, columnspan=2, sticky="ew")
+        self.changeroom_button = tk.Button(self.main_frame, text="Change Room", command=self.open_changeroom_input_window,state=tk.DISABLED)
         self.changeroom_button.grid(row=1, column=12, columnspan=2, sticky="ew")
 
         # Ensure the output text widget expands vertically in the third row
@@ -456,6 +456,7 @@ class LurkReaderApp:
             self.changeroom_button.config(state=tk.NORMAL)
             self.fight_button.config(state=tk.NORMAL)
             self.loot_button.config(state=tk.NORMAL)
+            self.pvp_button.config(state=tk.NORMAL)
         except Exception as e:
             self.add_text("Invalid port number. Please enter a valid integer\n", "red")
 
@@ -497,7 +498,6 @@ class LurkReaderApp:
                     message = self.receive_all(self.skt, message_length).decode("utf-8", errors='replace').rstrip('\x00')
 
                     # Construct message information
-
                     message_info = f"\nMessage From: {sender_name}"
                     message_info += f"  to  {recipient_name}\n"
                     message_info += f"Message: {message}\n"
@@ -691,8 +691,6 @@ class LurkReaderApp:
                                    f"Def: {defense} | Reg: {regen} | <3: {health} | "
                                    f"${gold} | Room: {room}\n")
                 unique_id = f"{player_name}_{room}"
-                print(player_name)
-                print(room)
                 if unique_id not in self.displayed_characters:
                     self.add_text(character_info, "red")
                     self.displayed_characters.add(unique_id)
@@ -803,6 +801,7 @@ class LurkReaderApp:
             self.changeroom_button.config(state=tk.DISABLED)
             self.fight_button.config(state=tk.DISABLED)
             self.loot_button.config(state=tk.DISABLED)
+            self.pvp_button.config(state=tk.DISABLED)
             self.clear_character_text()
             self.clear_monster_text()
             self.clear_connections_text()
